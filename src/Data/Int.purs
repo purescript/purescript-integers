@@ -39,7 +39,7 @@ instance moduloSemiringInt :: ModuloSemiring Int where
   mod = intMod
 
 instance ringInt :: Ring Int where
-  (-) = intMinus
+  (-) = intSub
 
 instance bitsInt :: Bits Int where
   (.&.) (Int x) (Int y) = Int (x .&. y)
@@ -79,16 +79,16 @@ foreign import intDiv
 
 foreign import intMod
   """
-  function intDiv(x) {
+  function intMod(x) {
     return function(y) {
       return (x % y + y) % y;
     };
   }
   """ :: Int -> Int -> Int
 
-foreign import intMinus
+foreign import intSub
   """
-  function intDiv(x) {
+  function intSub(x) {
     return function(y) {
       return x - y;
     };
