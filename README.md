@@ -27,6 +27,10 @@
 
     instance ordInt :: Ord Int
 
+#### `ringInt`
+
+    instance ringInt :: Ring Int
+
 #### `semiringInt`
 
     instance semiringInt :: Semiring Int
