@@ -81,7 +81,7 @@ foreign import intMod
   """
   function intMod(x) {
     return function(y) {
-      return (x % y + y) % y;
+      return x % y;
     };
   }
   """ :: Int -> Int -> Int
