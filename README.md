@@ -1,3 +1,7 @@
+# Performance warning
+
+This library is functional but currently very inefficient, pending changes in the compiler.
+
 # Module Documentation
 
 ## Module Data.Int
