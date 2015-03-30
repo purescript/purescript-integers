@@ -41,15 +41,6 @@ instance moduloSemiringInt :: ModuloSemiring Int where
 instance ringInt :: Ring Int where
   (-) = intSub
 
-instance bitsInt :: Bits Int where
-  (.&.) (Int x) (Int y) = Int (x .&. y)
-  (.|.) (Int x) (Int y) = Int (x .|. y)
-  (.^.) (Int x) (Int y) = Int (x .^. y)
-  shl (Int x) y = Int (x `shl` y)
-  shr (Int x) y = Int (x `shr` y)
-  zshr (Int x) y = Int (x `zshr` y)
-  complement (Int n) = Int (complement n)
-
 foreign import intAdd
   """
   function intAdd(x) {
