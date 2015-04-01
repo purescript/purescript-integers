@@ -1,58 +1,119 @@
-# Performance warning
-
-This library is functional but currently very inefficient, pending changes in the compiler.
-
 # Module Documentation
 
 ## Module Data.Int
 
-### Types
-
 #### `Int`
 
-    newtype Int
+``` purescript
+newtype Int
+```
 
-
-### Type Class Instances
-
-#### `bitsInt`
-
-    instance bitsInt :: Bits Int
-
-#### `eqInt`
-
-    instance eqInt :: Eq Int
-
-#### `moduloSemiringInt`
-
-    instance moduloSemiringInt :: ModuloSemiring Int
-
-#### `ordInt`
-
-    instance ordInt :: Ord Int
-
-#### `ringInt`
-
-    instance ringInt :: Ring Int
-
-#### `semiringInt`
-
-    instance semiringInt :: Semiring Int
-
-#### `showInt`
-
-    instance showInt :: Show Int
-
-
-### Values
 
 #### `fromNumber`
+
+``` purescript
+fromNumber :: Number -> Int
+```
 
 Creates an `Int` from a `Number` value. If the value is not already an
 integer it is rounded down.
 
-    fromNumber :: Number -> Int
-
 #### `toNumber`
 
-    toNumber :: Int -> Number
+``` purescript
+toNumber :: Int -> Number
+```
+
+
+#### `showInt`
+
+``` purescript
+instance showInt :: Show Int
+```
+
+
+#### `eqInt`
+
+``` purescript
+instance eqInt :: Eq Int
+```
+
+
+#### `ordInt`
+
+``` purescript
+instance ordInt :: Ord Int
+```
+
+
+#### `semiringInt`
+
+``` purescript
+instance semiringInt :: Semiring Int
+```
+
+
+#### `moduloSemiringInt`
+
+``` purescript
+instance moduloSemiringInt :: ModuloSemiring Int
+```
+
+
+#### `ringInt`
+
+``` purescript
+instance ringInt :: Ring Int
+```
+
+
+
+## Module Data.Int.Bits
+
+#### `(.&.)`
+
+``` purescript
+(.&.) :: Int -> Int -> Int
+```
+
+
+#### `(.|.)`
+
+``` purescript
+(.|.) :: Int -> Int -> Int
+```
+
+
+#### `(.^.)`
+
+``` purescript
+(.^.) :: Int -> Int -> Int
+```
+
+
+#### `shl`
+
+``` purescript
+shl :: Int -> Int -> Int
+```
+
+
+#### `shr`
+
+``` purescript
+shr :: Int -> Int -> Int
+```
+
+
+#### `zshr`
+
+``` purescript
+zshr :: Int -> Int -> Int
+```
+
+
+#### `complement`
+
+``` purescript
+complement :: Int -> Int
+```
