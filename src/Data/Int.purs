@@ -45,7 +45,7 @@ foreign import intAdd
   """
   function intAdd(x) {
     return function(y) {
-      return x + y;
+      return (x + y)|0;
     };
   }
   """ :: Int -> Int -> Int
@@ -54,7 +54,7 @@ foreign import intMul
   """
   function intMul(x) {
     return function(y) {
-      return x * y;
+      return (x * y)|0;
     };
   }
   """ :: Int -> Int -> Int
@@ -81,7 +81,7 @@ foreign import intSub
   """
   function intSub(x) {
     return function(y) {
-      return x - y;
+      return (x - y)|0;
     };
   }
   """ :: Int -> Int -> Int
