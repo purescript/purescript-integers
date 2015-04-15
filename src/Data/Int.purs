@@ -4,10 +4,12 @@ module Data.Int
   , toNumber
   ) where
 
+-- | A 32 bit integer.
 newtype Int = Int Number
 
 -- | Creates an `Int` from a `Number` value. If the value is not already an
--- | integer it is rounded down.
+-- | integer it is rounded towards zero (so both `0.9` and `-0.9` will become
+-- | `Int 0`).
 foreign import fromNumber
   """
   function fromNumber(n) {
@@ -15,6 +17,8 @@ foreign import fromNumber
   }
   """ :: Number -> Int
 
+-- | Converts an `Int` value back into a `Number`. Any `Int` is a valid `Number`
+-- | so there is no loss of precision with this function.
 toNumber :: Int -> Number
 toNumber (Int n) = n
 
