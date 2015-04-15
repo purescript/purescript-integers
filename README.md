@@ -12,7 +12,15 @@ bower install purescript-integers
 
 ## Overview
 
-Integers are constructed from the standard `Number` by using the `fromNumber` function, see [`docs/MODULE.md`](docs/MODULE.md) for more details.
+Integers are constructed from the standard `Number` by using the `fromNumber` function:
+
+``` purescript
+ten = fromNumber 10
+```
+
+See the [module documentation](docs/MODULE.md) for more details on the behaviour of `fromNumber`.
+
+A `Semiring Int` instance is also provided so `zero` and `one` can be used for the equivalent integer values.
 
 As values outside of the range -2,147,483,648 to 2,147,483,648 will overflow and wrap around, the `Int` type does not _strictly_ obey the laws for `Semiring` and `Ring`.
 
