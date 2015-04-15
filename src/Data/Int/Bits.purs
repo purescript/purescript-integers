@@ -1,3 +1,4 @@
+-- | This module defines bitwise operations for the `Int` type.
 module Data.Int.Bits
   ( (.&.)
   , (.|.)
@@ -8,19 +9,21 @@ module Data.Int.Bits
   , complement
   ) where
 
-import Prelude ()
 import Data.Int
 
 infixl 10 .&.
 infixl 10 .|.
 infixl 10 .^.
 
+-- | Bitwise AND.
 (.&.) :: Int -> Int -> Int
 (.&.) = andImpl
 
+-- | Bitwise OR.
 (.|.) :: Int -> Int -> Int
 (.|.) = orImpl
 
+-- | Bitwise XOR.
 (.^.) :: Int -> Int -> Int
 (.^.) = xorImpl
 
@@ -51,6 +54,7 @@ foreign import xorImpl
   }
   """ :: Int -> Int -> Int
 
+-- | Bitwise shift left.
 foreign import shl
   """
   function shl(n1) {
@@ -60,6 +64,7 @@ foreign import shl
   }
   """ :: Int -> Int -> Int
 
+-- | Bitwise shift right.
 foreign import shr
   """
   function shr(n1) {
@@ -69,6 +74,7 @@ foreign import shr
   }
   """ :: Int -> Int -> Int
 
+-- | Bitwise zero-fill shift right.
 foreign import zshr
   """
   function zshr(n1) {
@@ -78,6 +84,7 @@ foreign import zshr
   }
   """ :: Int -> Int -> Int
 
+-- | Bitwise NOT.
 foreign import complement
   """
   function complement(n) {

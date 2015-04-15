@@ -29,6 +29,17 @@ toNumber :: Int -> Number
 Converts an `Int` value back into a `Number`. Any `Int` is a valid `Number`
 so there is no loss of precision with this function.
 
+#### `toString`
+
+``` purescript
+toString :: Int -> String
+```
+
+Creates a `String` value from an `Int`. This differs from the `Show`
+instance as, for example, an `Int` value of 42 will be rendered as `"42"`
+by `toString`, whereas with `show` it would be rendered as
+`"fromNumber 42"`.
+
 #### `showInt`
 
 ``` purescript
@@ -56,6 +67,9 @@ instance ordInt :: Ord Int
 instance semiringInt :: Semiring Int
 ```
 
+The `Int` type does not strictly obey the `Semiring` laws due to the
+wrapping behaviour with values smaller than -2,147,483,648 or larger than
+2,147,483,648.
 
 #### `moduloSemiringInt`
 
@@ -70,9 +84,15 @@ instance moduloSemiringInt :: ModuloSemiring Int
 instance ringInt :: Ring Int
 ```
 
+The `Int` type does not strictly obey the `Ring` laws due to the
+wrapping behaviour with values smaller than -2,147,483,648 or larger than
+2,147,483,648.
 
 
 ## Module Data.Int.Bits
+
+
+This module defines bitwise operations for the `Int` type.
 
 #### `(.&.)`
 
@@ -80,6 +100,7 @@ instance ringInt :: Ring Int
 (.&.) :: Int -> Int -> Int
 ```
 
+Bitwise AND.
 
 #### `(.|.)`
 
@@ -87,6 +108,7 @@ instance ringInt :: Ring Int
 (.|.) :: Int -> Int -> Int
 ```
 
+Bitwise OR.
 
 #### `(.^.)`
 
@@ -94,6 +116,7 @@ instance ringInt :: Ring Int
 (.^.) :: Int -> Int -> Int
 ```
 
+Bitwise XOR.
 
 #### `shl`
 
@@ -101,6 +124,7 @@ instance ringInt :: Ring Int
 shl :: Int -> Int -> Int
 ```
 
+Bitwise shift left.
 
 #### `shr`
 
@@ -108,6 +132,7 @@ shl :: Int -> Int -> Int
 shr :: Int -> Int -> Int
 ```
 
+Bitwise shift right.
 
 #### `zshr`
 
@@ -115,6 +140,7 @@ shr :: Int -> Int -> Int
 zshr :: Int -> Int -> Int
 ```
 
+Bitwise zero-fill shift right.
 
 #### `complement`
 
@@ -122,6 +148,7 @@ zshr :: Int -> Int -> Int
 complement :: Int -> Int
 ```
 
+Bitwise NOT.
 
 
 
