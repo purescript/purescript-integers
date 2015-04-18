@@ -1,119 +1,29 @@
-# Module Documentation
+# purescript-integers
 
-## Module Data.Int
+[![Build Status](https://travis-ci.org/purescript/purescript-integers.svg?branch=master)](https://travis-ci.org/purescript/purescript-integers)
 
-#### `Int`
+This library provides a 32-bit `Int` type for PureScript along with corresponding bitwise operations.
 
-``` purescript
-newtype Int
+## Installation
+
+```
+bower install purescript-integers
 ```
 
+## Overview
 
-#### `fromNumber`
-
-``` purescript
-fromNumber :: Number -> Int
-```
-
-Creates an `Int` from a `Number` value. If the value is not already an
-integer it is rounded down.
-
-#### `toNumber`
+Integers are constructed from the standard `Number` by using the `fromNumber` function:
 
 ``` purescript
-toNumber :: Int -> Number
+ten = fromNumber 10
 ```
 
+See the [module documentation](docs/MODULE.md) for more details on the behaviour of `fromNumber`.
 
-#### `showInt`
+A `Semiring Int` instance is also provided so `zero` and `one` can be used for the equivalent integer values.
 
-``` purescript
-instance showInt :: Show Int
-```
+As values outside of the range -2,147,483,648 to 2,147,483,648 will overflow and wrap around, the `Int` type does not _strictly_ obey the laws for `Semiring` and `Ring`.
 
+## Module documentation
 
-#### `eqInt`
-
-``` purescript
-instance eqInt :: Eq Int
-```
-
-
-#### `ordInt`
-
-``` purescript
-instance ordInt :: Ord Int
-```
-
-
-#### `semiringInt`
-
-``` purescript
-instance semiringInt :: Semiring Int
-```
-
-
-#### `moduloSemiringInt`
-
-``` purescript
-instance moduloSemiringInt :: ModuloSemiring Int
-```
-
-
-#### `ringInt`
-
-``` purescript
-instance ringInt :: Ring Int
-```
-
-
-
-## Module Data.Int.Bits
-
-#### `(.&.)`
-
-``` purescript
-(.&.) :: Int -> Int -> Int
-```
-
-
-#### `(.|.)`
-
-``` purescript
-(.|.) :: Int -> Int -> Int
-```
-
-
-#### `(.^.)`
-
-``` purescript
-(.^.) :: Int -> Int -> Int
-```
-
-
-#### `shl`
-
-``` purescript
-shl :: Int -> Int -> Int
-```
-
-
-#### `shr`
-
-``` purescript
-shr :: Int -> Int -> Int
-```
-
-
-#### `zshr`
-
-``` purescript
-zshr :: Int -> Int -> Int
-```
-
-
-#### `complement`
-
-``` purescript
-complement :: Int -> Int
-```
+[`docs/MODULE.md`](docs/MODULE.md)
