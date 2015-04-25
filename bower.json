@@ -14,8 +14,5 @@
     "bower.json",
     "gulpfile.js",
     "package.json"
-  ],
-  "dependencies": {
-    "purescript-prelude": "~0.1.0"
-  }
+  ]
 }
