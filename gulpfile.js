@@ -5,15 +5,12 @@ var plumber = require("gulp-plumber");
 var purescript = require("gulp-purescript");
 var jsvalidate = require("gulp-jsvalidate");
 
-var paths = [
-  "src/**/*.purs",
-  "bower_components/purescript-*/src/**/*.purs"
-];
+var paths = ["src/**/*.purs"];
 
 gulp.task("make", function() {
   return gulp.src(paths)
     .pipe(plumber())
-    .pipe(purescript.pscMake());
+    .pipe(purescript.pscMake({ noPrelude: true }));
 });
 
 gulp.task("jsvalidate", ["make"], function () {

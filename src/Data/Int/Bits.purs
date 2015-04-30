@@ -9,8 +9,6 @@ module Data.Int.Bits
   , complement
   ) where
 
-import Data.Int
-
 infixl 10 .&.
 infixl 10 .|.
 infixl 10 .^.
