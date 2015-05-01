@@ -12,10 +12,10 @@ bower install purescript-integers
 
 ## Overview
 
-Integers are constructed from the standard `Number` by using the `fromNumber` function:
+Integers are constructed using integer literals, or from the standard `Number` by using the `fromNumber` function:
 
 ``` purescript
-ten = fromNumber 10
+ten = fromNumber 1.0
 ```
 
 See the [module documentation](docs/MODULE.md) for more details on the behaviour of `fromNumber`.
