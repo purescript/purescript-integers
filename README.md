@@ -22,7 +22,7 @@ See the [module documentation](docs/MODULE.md) for more details on the behaviour
 
 A `Semiring Int` instance is also provided so `zero` and `one` can be used for the equivalent integer values.
 
-As values outside of the range -2,147,483,648 to 2,147,483,648 will overflow and wrap around, the `Int` type does not _strictly_ obey the laws for `Semiring` and `Ring`.
+As values outside of the range -2,147,483,648 to 2,147,483,647 will overflow and wrap around, the `Int` type does not _strictly_ obey the laws for `Semiring` and `Ring`.
 
 ## Module documentation
 
