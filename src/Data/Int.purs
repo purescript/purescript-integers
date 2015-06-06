@@ -6,6 +6,8 @@ module Data.Int
   , odd
   ) where
 
+import Prelude
+
 import Data.Int.Bits
 import Data.Maybe (Maybe(..))
 

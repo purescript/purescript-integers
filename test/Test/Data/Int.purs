@@ -1,5 +1,7 @@
 module Test.Data.Int (testInt) where
 
+import Prelude
+
 import Console (log)
 import Data.Int
 import Data.Maybe (Maybe(..))
