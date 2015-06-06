@@ -3,12 +3,12 @@
 #### `fromNumber`
 
 ``` purescript
-fromNumber :: Number -> Int
+fromNumber :: Number -> Maybe Int
 ```
 
-Creates an `Int` from a `Number` value. If the value is not already an
-integer it is rounded towards zero (so both `0.9` and `-0.9` will become
-`Int 0`).
+Creates an `Int` from a `Number` value. The number must already be an
+integer and fall within the valid range of values for the `Int` type
+otherwise `Nothing` is returned.
 
 #### `toNumber`
 
@@ -24,6 +24,10 @@ so there is no loss of precision with this function.
 ``` purescript
 fromString :: String -> Maybe Int
 ```
+
+Reads an `Int` from a `String` value. The number must parse as an integer
+and fall within the valid range of values for the `Int` type, otherwise
+`Nothing` is returned.
 
 #### `even`
 

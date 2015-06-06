@@ -3,9 +3,13 @@
 
 // module Data.Int
 
-exports.fromNumber = function (n) {
-  /* jshint bitwise: false */
-  return n | 0;
+exports.fromNumberImpl = function (just) {
+  return function (nothing) {
+    return function (n) {
+      /* jshint bitwise: false */
+      return (n | 0) === n ? just(n) : nothing;
+    };
+  };
 };
 
 exports.toNumber = function (n) {

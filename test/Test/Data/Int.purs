@@ -2,7 +2,7 @@ module Test.Data.Int (testInt) where
 
 import Prelude
 
-import Console (log)
+import Control.Monad.Eff.Console (log)
 import Data.Int
 import Data.Maybe (Maybe(..))
 import Test.Assert (assert)
@@ -10,13 +10,13 @@ import Test.Assert (assert)
 testInt = do
 
   log "fromNumber should coerce integer values"
-  assert $ fromNumber 1.0 == 1
-  assert $ fromNumber 42.0 == 42
-  assert $ fromNumber 0.0 == 0
+  assert $ fromNumber 1.0 == Just 1
+  assert $ fromNumber 42.0 == Just 42
+  assert $ fromNumber 0.0 == Just 0
 
-  log "fromNumber should round floats towards zero"
-  assert $ fromNumber 0.9 == 0
-  assert $ fromNumber (-0.9) == 0
+  log "fromNumber should fail on float inputs"
+  assert $ fromNumber 0.9 == Nothing
+  assert $ fromNumber (-0.9) == Nothing
 
   log "toNumber should coerce any integer to a number"
   assert $ toNumber 1 == 1.0
