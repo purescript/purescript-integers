@@ -8,6 +8,8 @@ This module defines bitwise operations for the `Int` type.
 (.&.) :: Int -> Int -> Int
 ```
 
+_left-associative / precedence 10_
+
 Bitwise AND.
 
 #### `(.|.)`
@@ -16,6 +18,8 @@ Bitwise AND.
 (.|.) :: Int -> Int -> Int
 ```
 
+_left-associative / precedence 10_
+
 Bitwise OR.
 
 #### `(.^.)`
@@ -23,6 +27,8 @@ Bitwise OR.
 ``` purescript
 (.^.) :: Int -> Int -> Int
 ```
+
+_left-associative / precedence 10_
 
 Bitwise XOR.
 
