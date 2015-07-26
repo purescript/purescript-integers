@@ -1,5 +1,8 @@
 module Data.Int
   ( fromNumber
+  , ceil
+  , floor
+  , round
   , toNumber
   , fromString
   , even
@@ -10,6 +13,8 @@ import Prelude
 
 import Data.Int.Bits
 import Data.Maybe (Maybe(..))
+import qualified Data.Maybe.Unsafe as U
+import qualified Math as Math
 
 -- | Creates an `Int` from a `Number` value. The number must already be an
 -- | integer and fall within the valid range of values for the `Int` type
@@ -21,6 +26,30 @@ foreign import fromNumberImpl :: (forall a. a -> Maybe a)
                               -> (forall a. Maybe a)
                               -> Number
                               -> Maybe Int
+
+-- | Convert a `Number` to an `Int`, by taking the closest integer equal to or
+-- | less than the argument. Values outside the `Int` range are clamped.
+floor :: Number -> Int
+floor = unsafeClamp <<< Math.floor
+
+-- | Convert a `Number` to an `Int`, by taking the closest integer equal to or
+-- | greater than the argument. Values outside the `Int` range are clamped.
+ceil :: Number -> Int
+ceil = unsafeClamp <<< Math.ceil
+
+-- | Convert a `Number` to an `Int`, by taking the nearest integer to the
+-- | argument. Values outside the `Int` range are clamped.
+round :: Number -> Int
+round = unsafeClamp <<< Math.round
+
+-- | Convert an integral `Number` to an `Int`, by clamping to the `Int` range.
+-- | This function will throw an error at runtime if the argument is
+-- | non-integral.
+unsafeClamp :: Number -> Int
+unsafeClamp x
+  | x >= toNumber (top :: Int)    = top
+  | x <= toNumber (bottom :: Int) = bottom
+  | otherwise                     = U.fromJust $ fromNumber x
 
 -- | Converts an `Int` value back into a `Number`. Any `Int` is a valid `Number`
 -- | so there is no loss of precision with this function.
