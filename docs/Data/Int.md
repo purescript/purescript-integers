@@ -10,6 +10,33 @@ Creates an `Int` from a `Number` value. The number must already be an
 integer and fall within the valid range of values for the `Int` type
 otherwise `Nothing` is returned.
 
+#### `floor`
+
+``` purescript
+floor :: Number -> Int
+```
+
+Convert a `Number` to an `Int`, by taking the closest integer equal to or
+less than the argument. Values outside the `Int` range are clamped.
+
+#### `ceil`
+
+``` purescript
+ceil :: Number -> Int
+```
+
+Convert a `Number` to an `Int`, by taking the closest integer equal to or
+greater than the argument. Values outside the `Int` range are clamped.
+
+#### `round`
+
+``` purescript
+round :: Number -> Int
+```
+
+Convert a `Number` to an `Int`, by taking the nearest integer to the
+argument. Values outside the `Int` range are clamped.
+
 #### `toNumber`
 
 ``` purescript
