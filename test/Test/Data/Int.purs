@@ -2,11 +2,15 @@ module Test.Data.Int (testInt) where
 
 import Prelude
 
-import Control.Monad.Eff.Console (log)
-import Data.Int
-import Data.Maybe (Maybe(..))
-import Test.Assert (assert)
+import Control.Monad.Eff (Eff)
+import Control.Monad.Eff.Console (CONSOLE, log)
 
+import Data.Int (odd, even, fromString, floor, ceil, round, toNumber, fromNumber)
+import Data.Maybe (Maybe(..))
+
+import Test.Assert (ASSERT, assert)
+
+testInt :: Eff (console :: CONSOLE, assert :: ASSERT) Unit
 testInt = do
 
   log "fromNumber should coerce integer values"

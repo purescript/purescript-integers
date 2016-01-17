@@ -1,23 +1,22 @@
-/* global exports */
 "use strict";
 
 // module Data.Int.Bits
 
-exports.andImpl = function (n1) {
+exports.and = function (n1) {
   return function (n2) {
     /* jshint bitwise: false */
     return n1 & n2;
   };
 };
 
-exports.orImpl = function (n1) {
+exports.or = function (n1) {
   return function (n2) {
     /* jshint bitwise: false */
     return n1 | n2;
   };
 };
 
-exports.xorImpl = function (n1) {
+exports.xor = function (n1) {
   return function (n2) {
     /* jshint bitwise: false */
     return n1 ^ n2;

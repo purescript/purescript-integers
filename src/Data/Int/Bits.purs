@@ -1,35 +1,28 @@
 -- | This module defines bitwise operations for the `Int` type.
 module Data.Int.Bits
-  ( (.&.)
-  , (.|.)
-  , (.^.)
+  ( and, (.&.)
+  , or, (.|.)
+  , xor, (.^.)
   , shl
   , shr
   , zshr
   , complement
   ) where
 
-infixl 10 .&.
-infixl 10 .|.
-infixl 10 .^.
-
 -- | Bitwise AND.
-(.&.) :: Int -> Int -> Int
-(.&.) = andImpl
+foreign import and :: Int -> Int -> Int
 
-foreign import andImpl :: Int -> Int -> Int
+infixl 10 and as .&.
 
 -- | Bitwise OR.
-(.|.) :: Int -> Int -> Int
-(.|.) = orImpl
+foreign import or :: Int -> Int -> Int
 
-foreign import orImpl :: Int -> Int -> Int
+infixl 10 or as .|.
 
 -- | Bitwise XOR.
-(.^.) :: Int -> Int -> Int
-(.^.) = xorImpl
+foreign import xor :: Int -> Int -> Int
 
-foreign import xorImpl :: Int -> Int -> Int
+infixl 10 xor as .^.
 
 -- | Bitwise shift left.
 foreign import shl :: Int -> Int -> Int

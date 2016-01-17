@@ -4,7 +4,7 @@
 [![Build Status](https://travis-ci.org/purescript/purescript-integers.svg?branch=master)](https://travis-ci.org/purescript/purescript-integers)
 [![Dependency Status](https://www.versioneye.com/user/projects/55848cbc363861001d00034e/badge.svg?style=flat)](https://www.versioneye.com/user/projects/55848cbc363861001d00034e)
 
-Functions and bitwise operators for the Int numeric type.
+Functions and bitwise operators for the `Int` numeric type.
 
 ## Installation
 
@@ -12,7 +12,6 @@ Functions and bitwise operators for the Int numeric type.
 bower install purescript-integers
 ```
 
-## Module documentation
+## Documentation
 
-- [`Data.Int`](docs/Data/Int.md)
-- [`Data.Int.Bits`](docs/Data/Int/Bits.md)
+Module documentation is [published on Pursuit](http://pursuit.purescript.org/packages/purescript-integers).
