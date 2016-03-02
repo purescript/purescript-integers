@@ -5,8 +5,11 @@ import Prelude
 import Control.Monad.Eff (Eff)
 import Control.Monad.Eff.Console (CONSOLE, log)
 
-import Data.Int (odd, even, fromString, floor, ceil, round, toNumber, fromNumber)
-import Data.Maybe (Maybe(..))
+import Data.Int (odd, even, fromString, floor, ceil, round, toNumber,
+                 fromNumber, fromStringAs, binary, octal, hexadecimal,
+                 radix, toStringAs)
+import Data.Maybe (Maybe(..), fromJust)
+import Partial.Unsafe (unsafePartial)
 
 import Test.Assert (ASSERT, assert)
 
@@ -55,13 +58,46 @@ testInt = do
   assert $ fromString "0" == Just 0
   assert $ fromString "9467" == Just 9467
   assert $ fromString "-6" == Just (-6)
+  assert $ fromString "+6" == Just 6
 
   log "fromString should fail to read floats"
   assert $ fromString "0.1" == Nothing
+  assert $ fromString "42.000000000000001" == Nothing
 
   log "fromString should fail to read integers outside of the int32 range"
   assert $ fromString "2147483648" == Nothing
   assert $ fromString "-2147483649" == Nothing
+
+  log "fromString should fail to read strings with other non-integer values"
+  assert $ fromString "" == Nothing
+  assert $ fromString "a" == Nothing
+  assert $ fromString "5a" == Nothing
+  assert $ fromString "42,12" == Nothing
+
+  log "fromStringAs should read integers in different bases"
+  assert $ fromStringAs binary "100" == Just 4
+  assert $ fromStringAs hexadecimal "100" == Just 256
+  assert $ fromStringAs hexadecimal "EF" == Just 239
+  assert $ fromStringAs hexadecimal "+ef" == Just 239
+  assert $ fromStringAs hexadecimal "-ef" == Just (-239)
+  assert $ fromStringAs hexadecimal "+7fffffff" == Just 2147483647
+  assert $ fromStringAs hexadecimal "-80000000" == Just (-2147483648)
+  assert $ fromStringAs binary "10" == Just 2
+  assert $ fromStringAs (unsafePartial $ fromJust $ radix 3) "10" == Just 3
+  assert $ fromStringAs (unsafePartial $ fromJust $ radix 11) "10" == Just 11
+  assert $ fromStringAs (unsafePartial $ fromJust $ radix 12) "10" == Just 12
+  assert $ fromStringAs (unsafePartial $ fromJust $ radix 36) "10" == Just 36
+
+  log "fromStringAs should fail on unknown digits"
+  assert $ fromStringAs binary "12" == Nothing
+  assert $ fromStringAs octal "8" == Nothing
+  assert $ fromStringAs hexadecimal "1g" == Nothing
+
+  log "toStringAs should transform to a different base"
+  assert $ toStringAs hexadecimal 255 == "ff"
+  assert $ toStringAs binary 4 == "100"
+  assert $ toStringAs binary (-4) == "-100"
+  assert $ toStringAs hexadecimal 2147483647 == "7fffffff"
 
   log "zero is even"
   assert $ even 0 == true
