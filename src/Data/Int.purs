@@ -9,12 +9,17 @@ module Data.Int
   , odd
   ) where
 
-import Prelude
+import Data.Boolean (otherwise)
+import Data.Bounded (top, bottom)
+import Data.Eq ((==), (/=))
+import Data.Function ((<<<))
+import Data.Int.Bits ((.&.))
+import Data.Maybe (Maybe(..), fromJust)
+import Data.Ord ((<=), (>=))
 
-import Data.Int.Bits
-import Data.Maybe (Maybe(..))
-import qualified Data.Maybe.Unsafe as U
-import qualified Math as Math
+import Math as Math
+
+import Partial.Unsafe (unsafePartial)
 
 -- | Creates an `Int` from a `Number` value. The number must already be an
 -- | integer and fall within the valid range of values for the `Int` type
@@ -22,10 +27,11 @@ import qualified Math as Math
 fromNumber :: Number -> Maybe Int
 fromNumber = fromNumberImpl Just Nothing
 
-foreign import fromNumberImpl :: (forall a. a -> Maybe a)
-                              -> (forall a. Maybe a)
-                              -> Number
-                              -> Maybe Int
+foreign import fromNumberImpl
+  :: (forall a. a -> Maybe a)
+  -> (forall a. Maybe a)
+  -> Number
+  -> Maybe Int
 
 -- | Convert a `Number` to an `Int`, by taking the closest integer equal to or
 -- | less than the argument. Values outside the `Int` range are clamped.
@@ -47,9 +53,9 @@ round = unsafeClamp <<< Math.round
 -- | non-integral.
 unsafeClamp :: Number -> Int
 unsafeClamp x
-  | x >= toNumber (top :: Int)    = top
-  | x <= toNumber (bottom :: Int) = bottom
-  | otherwise                     = U.fromJust $ fromNumber x
+  | x >= toNumber top = top
+  | x <= toNumber bottom = bottom
+  | otherwise = unsafePartial (fromJust (fromNumber x))
 
 -- | Converts an `Int` value back into a `Number`. Any `Int` is a valid `Number`
 -- | so there is no loss of precision with this function.
@@ -61,10 +67,11 @@ foreign import toNumber :: Int -> Number
 fromString :: String -> Maybe Int
 fromString = fromStringImpl Just Nothing
 
-foreign import fromStringImpl :: (forall a. a -> Maybe a)
-                              -> (forall a. Maybe a)
-                              -> String
-                              -> Maybe Int
+foreign import fromStringImpl
+  :: (forall a. a -> Maybe a)
+  -> (forall a. Maybe a)
+  -> String
+  -> Maybe Int
 
 -- | Returns whether an `Int` is an even number.
 -- |
