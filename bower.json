@@ -18,7 +18,7 @@
   ],
   "dependencies": {
     "purescript-maybe": "^1.0.0-rc.1",
-    "purescript-math": "^1.0.0-rc.1",
+    "purescript-math": "^1.0.0",
     "purescript-partial": "^1.1.0"
   },
   "devDependencies": {
