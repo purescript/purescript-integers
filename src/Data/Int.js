@@ -15,12 +15,34 @@ exports.toNumber = function (n) {
   return n;
 };
 
-exports.fromStringImpl = function (just) {
+exports.fromStringAsImpl = function (just) {
   return function (nothing) {
-    return function (s) {
-      /* jshint bitwise: false */
-      var i = parseFloat(s);
-      return (i | 0) === i ? just(i) : nothing;
+    return function (radix) {
+      var digits;
+      if (radix < 11) {
+        digits = "[0-" + (radix - 1).toString() + "]";
+      } else if (radix === 11) {
+        digits = "[0-9a]";
+      } else {
+        digits = "[0-9a-" + String.fromCharCode(86 + radix) + "]";
+      }
+      var pattern = new RegExp("^[\\+\\-]?" + digits + "+$", "i");
+
+      return function (s) {
+        /* jshint bitwise: false */
+        if (pattern.test(s)) {
+          var i = parseInt(s, radix);
+          return (i | 0) === i ? just(i) : nothing;
+        } else {
+          return nothing;
+        }
+      };
     };
+  };
+};
+
+exports.toStringAs = function (radix) {
+  return function (i) {
+    return i.toString(radix);
   };
 };

@@ -5,11 +5,20 @@ module Data.Int
   , round
   , toNumber
   , fromString
+  , Radix()
+  , radix
+  , binary
+  , octal
+  , decimal
+  , hexadecimal
+  , fromStringAs
+  , toStringAs
   , even
   , odd
   ) where
 
 import Data.Boolean (otherwise)
+import Data.BooleanAlgebra ((&&))
 import Data.Bounded (top, bottom)
 import Data.Eq ((==), (/=))
 import Data.Function ((<<<))
@@ -65,13 +74,7 @@ foreign import toNumber :: Int -> Number
 -- | and fall within the valid range of values for the `Int` type, otherwise
 -- | `Nothing` is returned.
 fromString :: String -> Maybe Int
-fromString = fromStringImpl Just Nothing
-
-foreign import fromStringImpl
-  :: (forall a. a -> Maybe a)
-  -> (forall a. Maybe a)
-  -> String
-  -> Maybe Int
+fromString = fromStringAs (Radix 10)
 
 -- | Returns whether an `Int` is an even number.
 -- |
@@ -90,3 +93,47 @@ even x = x .&. 1 == 0
 -- | ```
 odd :: Int -> Boolean
 odd x = x .&. 1 /= 0
+
+-- | The number of unique digits (including zero) used to represent integers in
+-- | a specific base.
+newtype Radix = Radix Int
+
+-- | The base-2 system.
+binary :: Radix
+binary = Radix 2
+
+-- | The base-8 system.
+octal :: Radix
+octal = Radix 8
+
+-- | The base-10 system.
+decimal :: Radix
+decimal = Radix 10
+
+-- | The base-16 system.
+hexadecimal :: Radix
+hexadecimal = Radix 16
+
+-- | Create a `Radix` from a number between 2 and 36.
+radix :: Int -> Maybe Radix
+radix n | n >= 2 && n <= 36 = Just (Radix n)
+        | otherwise         = Nothing
+
+-- | Like `fromString`, but the integer can be specified in a different base.
+-- |
+-- | Example:
+-- | ``` purs
+-- | fromStringAs binary      "100" == Just 4
+-- | fromStringAs hexadecimal "ff"  == Just 255
+-- | ```
+fromStringAs :: Radix -> String -> Maybe Int
+fromStringAs = fromStringAsImpl Just Nothing
+
+foreign import fromStringAsImpl
+  :: (forall a. a -> Maybe a)
+  -> (forall a. Maybe a)
+  -> Radix
+  -> String
+  -> Maybe Int
+
+foreign import toStringAs :: Radix -> Int -> String
