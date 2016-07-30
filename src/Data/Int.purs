@@ -11,6 +11,7 @@ module Data.Int
   , octal
   , decimal
   , hexadecimal
+  , base36
   , fromStringAs
   , toStringAs
   , even
@@ -113,6 +114,10 @@ decimal = Radix 10
 -- | The base-16 system.
 hexadecimal :: Radix
 hexadecimal = Radix 16
+
+-- | The base-36 system.
+base36 :: Radix
+base36 = Radix 36
 
 -- | Create a `Radix` from a number between 2 and 36.
 radix :: Int -> Maybe Radix
