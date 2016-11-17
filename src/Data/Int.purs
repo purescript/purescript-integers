@@ -16,6 +16,7 @@ module Data.Int
   , toStringAs
   , even
   , odd
+  , pow
   ) where
 
 import Data.Boolean (otherwise)
@@ -133,6 +134,9 @@ radix n | n >= 2 && n <= 36 = Just (Radix n)
 -- | ```
 fromStringAs :: Radix -> String -> Maybe Int
 fromStringAs = fromStringAsImpl Just Nothing
+
+-- | Raise an Int to the power of another Int.
+foreign import pow :: Int -> Int -> Int
 
 foreign import fromStringAsImpl
   :: (forall a. a -> Maybe a)
