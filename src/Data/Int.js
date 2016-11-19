@@ -46,3 +46,10 @@ exports.toStringAs = function (radix) {
     return i.toString(radix);
   };
 };
+
+exports.pow = function (x) {
+  return function (y) {
+    /* jshint bitwise: false */
+    return Math.pow(x,y) | 0;
+  };
+};

@@ -7,7 +7,7 @@ import Control.Monad.Eff.Console (CONSOLE, log)
 
 import Data.Int (odd, even, fromString, floor, ceil, round, toNumber,
                  fromNumber, fromStringAs, binary, octal, hexadecimal,
-                 radix, toStringAs)
+                 radix, toStringAs, pow)
 import Data.Maybe (Maybe(..), fromJust)
 import Partial.Unsafe (unsafePartial)
 
@@ -124,3 +124,15 @@ testInt = do
   assert $ odd 2 == false
   assert $ odd 4 == false
   assert $ odd 100 == false
+
+  log "pow"
+  assert $ pow 2 2 == 4
+  assert $ pow 5 3 == 125
+  assert $ pow 26 0 == 1
+  assert $ pow 0 32 == 0
+  assert $ pow 2 (-1) == 0
+  assert $ pow 1 (-2) == 1
+  assert $ pow 2 (-2) == 0
+  assert $ pow (-2) (-2) == 0
+  assert $ pow (-2) 2 == 4
+  assert $ pow (-2) 3 == (-8)
