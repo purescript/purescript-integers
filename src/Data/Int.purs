@@ -5,7 +5,7 @@ module Data.Int
   , round
   , toNumber
   , fromString
-  , Radix()
+  , Radix
   , radix
   , binary
   , octal
@@ -19,18 +19,13 @@ module Data.Int
   , pow
   ) where
 
-import Data.Boolean (otherwise)
-import Data.BooleanAlgebra ((&&))
-import Data.Bounded (top, bottom)
-import Data.Eq ((==), (/=))
-import Data.Function ((<<<))
+import Prelude
+
 import Data.Int.Bits ((.&.))
-import Data.Maybe (Maybe(..), fromJust)
-import Data.Ord ((<=), (>=))
+import Data.Maybe (Maybe(..), fromMaybe)
+import Global (infinity)
 
 import Math as Math
-
-import Partial.Unsafe (unsafePartial)
 
 -- | Creates an `Int` from a `Number` value. The number must already be an
 -- | integer and fall within the valid range of values for the `Int` type
@@ -45,28 +40,32 @@ foreign import fromNumberImpl
   -> Maybe Int
 
 -- | Convert a `Number` to an `Int`, by taking the closest integer equal to or
--- | less than the argument. Values outside the `Int` range are clamped.
+-- | less than the argument. Values outside the `Int` range are clamped, `NaN`
+-- | and `Infinity` values return 0.
 floor :: Number -> Int
 floor = unsafeClamp <<< Math.floor
 
 -- | Convert a `Number` to an `Int`, by taking the closest integer equal to or
--- | greater than the argument. Values outside the `Int` range are clamped.
+-- | greater than the argument. Values outside the `Int` range are clamped,
+-- | `NaN` and `Infinity` values return 0.
 ceil :: Number -> Int
 ceil = unsafeClamp <<< Math.ceil
 
 -- | Convert a `Number` to an `Int`, by taking the nearest integer to the
--- | argument. Values outside the `Int` range are clamped.
+-- | argument. Values outside the `Int` range are clamped, `NaN` and `Infinity`
+-- | values return 0.
 round :: Number -> Int
 round = unsafeClamp <<< Math.round
 
 -- | Convert an integral `Number` to an `Int`, by clamping to the `Int` range.
--- | This function will throw an error at runtime if the argument is
--- | non-integral.
+-- | This function will return 0 if the input is `NaN` or an `Infinity`.
 unsafeClamp :: Number -> Int
 unsafeClamp x
+  | x == infinity = 0
+  | x == -infinity = 0
   | x >= toNumber top = top
   | x <= toNumber bottom = bottom
-  | otherwise = unsafePartial (fromJust (fromNumber x))
+  | otherwise = fromMaybe 0 (fromNumber x)
 
 -- | Converts an `Int` value back into a `Number`. Any `Int` is a valid `Number`
 -- | so there is no loss of precision with this function.
