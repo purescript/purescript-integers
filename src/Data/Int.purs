@@ -85,6 +85,14 @@ data Parity = Even | Odd
 derive instance eqParity :: Eq Parity
 derive instance ordParity :: Ord Parity
 
+instance showParity :: Show Parity where
+  show Even = "Even"
+  show Odd = "Odd"
+
+instance boundedParity :: Bounded Parity where
+  bottom = Even
+  top = Odd
+
 -- | Returns whether an `Int` is `Even` or `Odd`.
 -- |
 -- | ``` purescript
