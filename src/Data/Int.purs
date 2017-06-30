@@ -14,6 +14,8 @@ module Data.Int
   , base36
   , fromStringAs
   , toStringAs
+  , Parity(..)
+  , parity
   , even
   , odd
   , pow
@@ -77,6 +79,21 @@ foreign import toNumber :: Int -> Number
 fromString :: String -> Maybe Int
 fromString = fromStringAs (Radix 10)
 
+-- | A type for describing whether an integer is even or odd.
+data Parity = Even | Odd
+
+derive instance eqParity :: Eq Parity
+derive instance ordParity :: Ord Parity
+
+-- | Returns whether an `Int` is `Even` or `Odd`.
+-- |
+-- | ``` purescript
+-- | parity 0 == Even
+-- | parity 1 == Odd
+-- | ```
+parity :: Int -> Parity
+parity n = if even n then Even else Odd
+
 -- | Returns whether an `Int` is an even number.
 -- |
 -- | ``` purescript
@@ -90,7 +107,7 @@ even x = x .&. 1 == 0
 -- |
 -- | ``` purescript
 -- | odd 0 == false
--- | odd 1 == false
+-- | odd 1 == true
 -- | ```
 odd :: Int -> Boolean
 odd x = x .&. 1 /= 0
