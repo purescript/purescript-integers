@@ -5,7 +5,7 @@ import Prelude
 import Control.Monad.Eff (Eff)
 import Control.Monad.Eff.Console (CONSOLE, log)
 
-import Data.Int (odd, even, fromString, floor, ceil, round, toNumber, fromNumber, fromStringAs, binary, octal, hexadecimal, radix, toStringAs, pow)
+import Data.Int (parity, odd, even, fromString, floor, ceil, round, toNumber, fromNumber, fromStringAs, binary, octal, hexadecimal, radix, toStringAs, pow)
 import Data.Maybe (Maybe(..), fromJust)
 
 import Global (nan, infinity)
@@ -135,6 +135,21 @@ testInt = do
   assert $ odd 2 == false
   assert $ odd 4 == false
   assert $ odd 100 == false
+
+  log "parity is a ring homomorphism"
+  do
+    let go x y = do
+          assert $ parity x + parity y == parity (x + y)
+          assert $ parity x * parity y == parity (x * y)
+
+    go 0 0
+    go 0 1
+    go 1 0
+    go 1 1
+    go 2 28
+    go 2 3
+    go 3 8
+    go 49 171
 
   log "pow"
   assert $ pow 2 2 == 4

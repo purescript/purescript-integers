@@ -80,6 +80,28 @@ fromString :: String -> Maybe Int
 fromString = fromStringAs (Radix 10)
 
 -- | A type for describing whether an integer is even or odd.
+-- |
+-- | The `Ord` instance considers `Even` to be less than `Odd`.
+-- |
+-- | The `Semiring` instance allows you to ask about the parity of the results
+-- | of arithmetical operations, given only the parities of the inputs. For
+-- | example, the sum of an odd number and an even number is odd, so
+-- | `Odd + Even == Odd`. This also works for multiplication, eg. the product
+-- | of two odd numbers is odd, and therefore `Odd * Odd == Odd`.
+-- |
+-- | More generally, we have that
+-- |
+-- | ```purescript
+-- | parity x + parity y == parity (x + y)
+-- | parity x * parity y == parity (x * y)
+-- | ```
+-- |
+-- | for any integers `x`, `y`. (A mathematician would say that `parity` is a
+-- | *ring homomorphism*.)
+-- |
+-- | After defining addition and multiplication on `Parity` in this way, the
+-- | `Semiring` laws now force us to choose `zero = Even` and `one = Odd`.
+-- | This `Semiring` instance actually turns out to be a `Field`.
 data Parity = Even | Odd
 
 derive instance eqParity :: Eq Parity
@@ -92,6 +114,29 @@ instance showParity :: Show Parity where
 instance boundedParity :: Bounded Parity where
   bottom = Even
   top = Odd
+
+instance semiringParity :: Semiring Parity where
+  zero = Even
+  add x y = if x == y then Even else Odd
+  one = Odd
+  mul Odd Odd = Odd
+  mul _ _ = Even
+
+instance ringParity :: Ring Parity where
+  sub = add
+
+instance commutativeRingParity :: CommutativeRing Parity
+
+instance euclideanRingParity :: EuclideanRing Parity where
+  degree Even = 0
+  degree Odd = 1
+  div x _ = x
+  mod _ _ = Even
+
+instance divisionRingParity :: DivisionRing Parity where
+  recip = id
+
+instance fieldParity :: Field Parity
 
 -- | Returns whether an `Int` is `Even` or `Odd`.
 -- |
