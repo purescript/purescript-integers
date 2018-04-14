@@ -134,7 +134,7 @@ instance euclideanRingParity :: EuclideanRing Parity where
   mod _ _ = Even
 
 instance divisionRingParity :: DivisionRing Parity where
-  recip = id
+  recip = identity
 
 instance fieldParity :: Field Parity
 

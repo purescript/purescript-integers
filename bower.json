@@ -17,13 +17,13 @@
     "package.json"
   ],
   "dependencies": {
-    "purescript-globals": "^3.0.0",
-    "purescript-math": "^2.0.0",
-    "purescript-maybe": "^3.0.0",
-    "purescript-partial": "^1.2.0"
+    "purescript-globals": "purescript/purescript-globals#compiler/0.12",
+    "purescript-math": "purescript/purescript-math#compiler/0.12",
+    "purescript-maybe": "purescript/purescript-maybe#compiler/0.12",
+    "purescript-partial": "purescript/purescript-partial#compiler/0.12"
   },
   "devDependencies": {
-    "purescript-assert": "^3.0.0",
-    "purescript-console": "^3.0.0"
+    "purescript-assert": "purescript/purescript-assert#compiler/0.12",
+    "purescript-console": "purescript/purescript-console#compiler/0.12"
   }
 }

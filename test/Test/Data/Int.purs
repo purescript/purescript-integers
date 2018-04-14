@@ -2,8 +2,8 @@ module Test.Data.Int (testInt) where
 
 import Prelude
 
-import Control.Monad.Eff (Eff)
-import Control.Monad.Eff.Console (CONSOLE, log)
+import Effect (Effect)
+import Effect.Console (log)
 
 import Data.Int (parity, odd, even, fromString, floor, ceil, round, toNumber, fromNumber, fromStringAs, binary, octal, hexadecimal, radix, toStringAs, pow)
 import Data.Maybe (Maybe(..), fromJust)
@@ -12,9 +12,9 @@ import Global (nan, infinity)
 
 import Partial.Unsafe (unsafePartial)
 
-import Test.Assert (ASSERT, assert)
+import Test.Assert (assert)
 
-testInt :: Eff (console :: CONSOLE, assert :: ASSERT) Unit
+testInt :: Effect Unit
 testInt = do
 
   log "fromNumber should coerce integer values"
