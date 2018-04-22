@@ -1,7 +1,5 @@
 "use strict";
 
-// module Data.Int
-
 exports.fromNumberImpl = function (just) {
   return function (nothing) {
     return function (n) {
@@ -44,6 +42,20 @@ exports.fromStringAsImpl = function (just) {
 exports.toStringAs = function (radix) {
   return function (i) {
     return i.toString(radix);
+  };
+};
+
+
+exports.quot = function (x) {
+  return function (y) {
+    /* jshint bitwise: false */
+    return x / y | 0;
+  };
+};
+
+exports.rem = function (x) {
+  return function (y) {
+    return x % y;
   };
 };
 

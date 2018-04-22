@@ -151,6 +151,28 @@ testInt = do
     go 3 8
     go 49 171
 
+  log "quotient/remainder law"
+  do
+    let
+      go a b =
+        let
+          q = quot a b
+          r = rem a b
+          msg = show a <> " / " <> show b <> ": "
+        in do
+          assert $ q * b + r == a
+    -- Check when dividend goes into divisor exactly
+    go 8 2
+    go (-8) 2
+    go 8 (-2)
+    go (-8) (-2)
+
+    -- Check when dividend does not go into divisor exactly
+    go 2 3
+    go (-2) 3
+    go 2 (-3)
+    go (-2) (-3)
+
   log "pow"
   assert $ pow 2 2 == 4
   assert $ pow 5 3 == 125
