@@ -138,8 +138,6 @@ instance euclideanRingParity :: EuclideanRing Parity where
 instance divisionRingParity :: DivisionRing Parity where
   recip = identity
 
-instance fieldParity :: Field Parity
-
 -- | Returns whether an `Int` is `Even` or `Odd`.
 -- |
 -- | ``` purescript
