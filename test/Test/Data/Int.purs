@@ -2,19 +2,15 @@ module Test.Data.Int (testInt) where
 
 import Prelude
 
-import Control.Monad.Eff (Eff)
-import Control.Monad.Eff.Console (CONSOLE, log)
-
-import Data.Int (parity, odd, even, fromString, floor, ceil, round, toNumber, fromNumber, fromStringAs, binary, octal, hexadecimal, radix, toStringAs, pow)
+import Data.Int (binary, ceil, even, floor, fromNumber, fromString, fromStringAs, hexadecimal, octal, odd, parity, pow, quot, radix, rem, round, toNumber, toStringAs)
 import Data.Maybe (Maybe(..), fromJust)
-
+import Effect (Effect)
+import Effect.Console (log)
 import Global (nan, infinity)
-
 import Partial.Unsafe (unsafePartial)
+import Test.Assert (assert)
 
-import Test.Assert (ASSERT, assert)
-
-testInt :: Eff (console :: CONSOLE, assert :: ASSERT) Unit
+testInt :: Effect Unit
 testInt = do
 
   log "fromNumber should coerce integer values"
@@ -150,6 +146,28 @@ testInt = do
     go 2 3
     go 3 8
     go 49 171
+
+  log "quotient/remainder law"
+  do
+    let
+      go a b =
+        let
+          q = quot a b
+          r = rem a b
+          msg = show a <> " / " <> show b <> ": "
+        in do
+          assert $ q * b + r == a
+    -- Check when dividend goes into divisor exactly
+    go 8 2
+    go (-8) 2
+    go 8 (-2)
+    go (-8) (-2)
+
+    -- Check when dividend does not go into divisor exactly
+    go 2 3
+    go (-2) 3
+    go 2 (-3)
+    go (-2) (-3)
 
   log "pow"
   assert $ pow 2 2 == 4

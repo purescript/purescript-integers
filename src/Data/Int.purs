@@ -18,6 +18,8 @@ module Data.Int
   , parity
   , even
   , odd
+  , quot
+  , rem
   , pow
   ) where
 
@@ -134,9 +136,7 @@ instance euclideanRingParity :: EuclideanRing Parity where
   mod _ _ = Even
 
 instance divisionRingParity :: DivisionRing Parity where
-  recip = id
-
-instance fieldParity :: Field Parity
+  recip = identity
 
 -- | Returns whether an `Int` is `Even` or `Odd`.
 -- |
@@ -203,6 +203,41 @@ radix n | n >= 2 && n <= 36 = Just (Radix n)
 -- | ```
 fromStringAs :: Radix -> String -> Maybe Int
 fromStringAs = fromStringAsImpl Just Nothing
+
+-- | The `quot` function provides _truncating_ integer division (see the
+-- | documentation for the `EuclideanRing` class). It is identical to `div` in
+-- | the `EuclideanRing Int` instance if the dividend is positive, but will be
+-- | slightly different if the dividend is negative. For example:
+-- |
+-- | ```purescript
+-- | div 2 3 == 0
+-- | quot 2 3 == 0
+-- |
+-- | div (-2) 3 == (-1)
+-- | quot (-2) 3 == 0
+-- |
+-- | div 2 (-3) == 0
+-- | quot 2 (-3) == 0
+-- | ```
+foreign import quot :: Int -> Int -> Int
+
+-- | The `rem` function provides the remainder after _truncating_ integer
+-- | division (see the documentation for the `EuclideanRing` class). It is
+-- | identical to `mod` in the `EuclideanRing Int` instance if the dividend is
+-- | positive, but will be slightly different if the dividend is negative. For
+-- | example:
+-- |
+-- | ```purescript
+-- | mod 2 3 == 2
+-- | rem 2 3 == 2
+-- |
+-- | mod (-2) 3 == 1
+-- | rem (-2) 3 == (-2)
+-- |
+-- | mod 2 (-3) == 2
+-- | rem 2 (-3) == 2
+-- | ```
+foreign import rem :: Int -> Int -> Int
 
 -- | Raise an Int to the power of another Int.
 foreign import pow :: Int -> Int -> Int
