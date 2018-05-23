@@ -2,16 +2,12 @@ module Test.Data.Int (testInt) where
 
 import Prelude
 
+import Data.Int (binary, ceil, even, floor, fromNumber, fromString, fromStringAs, hexadecimal, octal, odd, parity, pow, quot, radix, rem, round, toNumber, toStringAs)
+import Data.Maybe (Maybe(..), fromJust)
 import Effect (Effect)
 import Effect.Console (log)
-
-import Data.Int (parity, odd, even, fromString, floor, ceil, round, toNumber, fromNumber, fromStringAs, binary, octal, hexadecimal, radix, toStringAs, pow)
-import Data.Maybe (Maybe(..), fromJust)
-
 import Global (nan, infinity)
-
 import Partial.Unsafe (unsafePartial)
-
 import Test.Assert (assert)
 
 testInt :: Effect Unit
