@@ -16,14 +16,14 @@
     "package.json"
   ],
   "dependencies": {
-    "purescript-globals": "^4.0.0",
-    "purescript-math": "^2.1.1",
-    "purescript-maybe": "^4.0.0",
-    "purescript-prelude": "^4.0.0"
+    "purescript-globals": "master",
+    "purescript-math": "master",
+    "purescript-maybe": "master",
+    "purescript-prelude": "master"
   },
   "devDependencies": {
-    "purescript-assert": "^4.0.0",
-    "purescript-console": "^4.0.0",
-    "purescript-partial": "^2.0.0"
+    "purescript-assert": "master",
+    "purescript-console": "master",
+    "purescript-partial": "master"
   }
 }
