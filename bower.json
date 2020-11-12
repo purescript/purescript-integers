@@ -16,7 +16,7 @@
     "package.json"
   ],
   "dependencies": {
-    "purescript-globals": "master",
+    "purescript-numbers": "master",
     "purescript-math": "master",
     "purescript-maybe": "master",
     "purescript-prelude": "master"

@@ -27,7 +27,7 @@ import Prelude
 
 import Data.Int.Bits ((.&.))
 import Data.Maybe (Maybe(..), fromMaybe)
-import Global (isFinite)
+import Data.Number (isFinite)
 
 import Math as Math
 
