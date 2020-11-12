@@ -6,7 +6,7 @@ import Data.Int (binary, ceil, even, floor, fromNumber, fromString, fromStringAs
 import Data.Maybe (Maybe(..), fromJust)
 import Effect (Effect)
 import Effect.Console (log)
-import Global (nan, infinity)
+import Data.Number (nan, infinity)
 import Partial.Unsafe (unsafePartial)
 import Test.Assert (assert)
 
