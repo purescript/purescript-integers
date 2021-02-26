@@ -6,6 +6,16 @@ Notable changes to this project are documented in this file. The format is based
 
 Breaking changes:
 
+New features:
+
+Bugfixes:
+
+Other improvements:
+
+## [v5.0.0](https://github.com/purescript/purescript-integers/releases/tag/v5.0.0) - 2021-02-26
+
+Breaking changes:
+
 - Added support for PureScript 0.14 and dropped support for all previous versions (#37)
 - Replaced `globals` dependency with `numbers` (#40)
 
