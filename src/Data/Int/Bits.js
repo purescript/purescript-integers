@@ -2,49 +2,49 @@
 
 // module Data.Int.Bits
 
-exports.and = function (n1) {
+export var and = function (n1) {
   return function (n2) {
     /* jshint bitwise: false */
     return n1 & n2;
   };
 };
 
-exports.or = function (n1) {
+export var or = function (n1) {
   return function (n2) {
     /* jshint bitwise: false */
     return n1 | n2;
   };
 };
 
-exports.xor = function (n1) {
+export var xor = function (n1) {
   return function (n2) {
     /* jshint bitwise: false */
     return n1 ^ n2;
   };
 };
 
-exports.shl = function (n1) {
+export var shl = function (n1) {
   return function (n2) {
     /* jshint bitwise: false */
     return n1 << n2;
   };
 };
 
-exports.shr = function (n1) {
+export var shr = function (n1) {
   return function (n2) {
     /* jshint bitwise: false */
     return n1 >> n2;
   };
 };
 
-exports.zshr = function (n1) {
+export var zshr = function (n1) {
   return function (n2) {
     /* jshint bitwise: false */
     return n1 >>> n2;
   };
 };
 
-exports.complement = function (n) {
+export var complement = function (n) {
   /* jshint bitwise: false */
   return ~n;
 };
