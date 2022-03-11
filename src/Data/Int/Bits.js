@@ -1,5 +1,3 @@
-"use strict";
-
 // module Data.Int.Bits
 
 export const and = function (n1) {

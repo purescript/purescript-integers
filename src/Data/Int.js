@@ -1,5 +1,3 @@
-"use strict";
-
 export const fromNumberImpl = function (just) {
   return function (nothing) {
     return function (n) {
