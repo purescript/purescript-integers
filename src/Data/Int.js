@@ -1,6 +1,6 @@
 "use strict";
 
-export var fromNumberImpl = function (just) {
+export const fromNumberImpl = function (just) {
   return function (nothing) {
     return function (n) {
       /* jshint bitwise: false */
@@ -9,11 +9,11 @@ export var fromNumberImpl = function (just) {
   };
 };
 
-export var toNumber = function (n) {
+export const toNumber = function (n) {
   return n;
 };
 
-export var fromStringAsImpl = function (just) {
+export const fromStringAsImpl = function (just) {
   return function (nothing) {
     return function (radix) {
       var digits;
@@ -39,27 +39,27 @@ export var fromStringAsImpl = function (just) {
   };
 };
 
-export var toStringAs = function (radix) {
+export const toStringAs = function (radix) {
   return function (i) {
     return i.toString(radix);
   };
 };
 
 
-export var quot = function (x) {
+export const quot = function (x) {
   return function (y) {
     /* jshint bitwise: false */
     return x / y | 0;
   };
 };
 
-export var rem = function (x) {
+export const rem = function (x) {
   return function (y) {
     return x % y;
   };
 };
 
-export var pow = function (x) {
+export const pow = function (x) {
   return function (y) {
     /* jshint bitwise: false */
     return Math.pow(x,y) | 0;
