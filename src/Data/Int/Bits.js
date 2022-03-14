@@ -1,50 +1,48 @@
-"use strict";
-
 // module Data.Int.Bits
 
-exports.and = function (n1) {
+export const and = function (n1) {
   return function (n2) {
     /* jshint bitwise: false */
     return n1 & n2;
   };
 };
 
-exports.or = function (n1) {
+export const or = function (n1) {
   return function (n2) {
     /* jshint bitwise: false */
     return n1 | n2;
   };
 };
 
-exports.xor = function (n1) {
+export const xor = function (n1) {
   return function (n2) {
     /* jshint bitwise: false */
     return n1 ^ n2;
   };
 };
 
-exports.shl = function (n1) {
+export const shl = function (n1) {
   return function (n2) {
     /* jshint bitwise: false */
     return n1 << n2;
   };
 };
 
-exports.shr = function (n1) {
+export const shr = function (n1) {
   return function (n2) {
     /* jshint bitwise: false */
     return n1 >> n2;
   };
 };
 
-exports.zshr = function (n1) {
+export const zshr = function (n1) {
   return function (n2) {
     /* jshint bitwise: false */
     return n1 >>> n2;
   };
 };
 
-exports.complement = function (n) {
+export const complement = function (n) {
   /* jshint bitwise: false */
   return ~n;
 };
