@@ -63,3 +63,7 @@ export const pow = function (x) {
     return Math.pow(x,y) | 0;
   };
 };
+
+export const trunc = Math.trunc || function (n) {
+  return n < 0 ? Math.ceil(n) : Math.floor(n);
+};

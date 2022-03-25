@@ -21,6 +21,7 @@ module Data.Int
   , quot
   , rem
   , pow
+  , trunc
   ) where
 
 import Prelude
@@ -240,6 +241,10 @@ foreign import rem :: Int -> Int -> Int
 
 -- | Raise an Int to the power of another Int.
 foreign import pow :: Int -> Int -> Int
+
+-- | Truncates the decimal portion of a number. Equivalent to `floor` if the
+-- | number is positive, and `ceil` if the number is negative.
+foreign import trunc :: Number -> Int
 
 foreign import fromStringAsImpl
   :: (forall a. a -> Maybe a)
