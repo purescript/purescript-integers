@@ -155,7 +155,6 @@ testInt = do
         let
           q = quot a b
           r = rem a b
-          msg = show a <> " / " <> show b <> ": "
         in do
           assert $ q * b + r == a
     -- Check when dividend goes into divisor exactly
