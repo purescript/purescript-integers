@@ -2,6 +2,7 @@ module Data.Int
   ( fromNumber
   , ceil
   , floor
+  , trunc
   , round
   , toNumber
   , fromString
@@ -21,7 +22,6 @@ module Data.Int
   , quot
   , rem
   , pow
-  , trunc
   ) where
 
 import Prelude
@@ -55,6 +55,12 @@ floor = unsafeClamp <<< Math.floor
 -- | `NaN` and `Infinity` values return 0.
 ceil :: Number -> Int
 ceil = unsafeClamp <<< Math.ceil
+
+-- | Convert a `Number` to an `Int`, by dropping the decimal.
+-- | Values outside the `Int` range are clamped, `NaN` and `Infinity`
+-- | values return 0.
+trunc :: Number -> Int
+trunc = unsafeClamp <<< Number.trunc
 
 -- | Convert a `Number` to an `Int`, by taking the nearest integer to the
 -- | argument. Values outside the `Int` range are clamped, `NaN` and `Infinity`
@@ -241,12 +247,6 @@ foreign import rem :: Int -> Int -> Int
 
 -- | Raise an Int to the power of another Int.
 foreign import pow :: Int -> Int -> Int
-
--- | Convert a `Number` to an `Int`, by dropping the decimal.
--- | Values outside the `Int` range are clamped, `NaN` and `Infinity`
--- | values return 0.
-trunc :: Number -> Int
-trunc = unsafeClamp <<< Number.trunc
 
 foreign import fromStringAsImpl
   :: (forall a. a -> Maybe a)
