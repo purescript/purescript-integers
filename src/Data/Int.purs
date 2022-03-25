@@ -242,9 +242,11 @@ foreign import rem :: Int -> Int -> Int
 -- | Raise an Int to the power of another Int.
 foreign import pow :: Int -> Int -> Int
 
--- | Truncates the decimal portion of a number. Equivalent to `floor` if the
--- | number is positive, and `ceil` if the number is negative.
-foreign import trunc :: Number -> Int
+-- | Convert a `Number` to an `Int`, by dropping the decimal.
+-- | Values outside the `Int` range are clamped, `NaN` and `Infinity`
+-- | values return 0.
+trunc :: Number -> Int
+trunc = unsafeClamp <<< Number.trunc
 
 foreign import fromStringAsImpl
   :: (forall a. a -> Maybe a)
