@@ -13,6 +13,7 @@ New features:
 Bugfixes:
 
 Other improvements:
+- Drop dependency on deprecated `math` package (#51 by @JordanMartinez)
 
 ## [v5.0.0](https://github.com/purescript/purescript-integers/releases/tag/v5.0.0) - 2021-02-26
 
