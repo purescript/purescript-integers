@@ -2,6 +2,7 @@ module Data.Int
   ( fromNumber
   , ceil
   , floor
+  , trunc
   , round
   , toNumber
   , fromString
@@ -28,8 +29,7 @@ import Prelude
 import Data.Int.Bits ((.&.))
 import Data.Maybe (Maybe(..), fromMaybe)
 import Data.Number (isFinite)
-
-import Math as Math
+import Data.Number as Number
 
 -- | Creates an `Int` from a `Number` value. The number must already be an
 -- | integer and fall within the valid range of values for the `Int` type
@@ -47,19 +47,25 @@ foreign import fromNumberImpl
 -- | less than the argument. Values outside the `Int` range are clamped, `NaN`
 -- | and `Infinity` values return 0.
 floor :: Number -> Int
-floor = unsafeClamp <<< Math.floor
+floor = unsafeClamp <<< Number.floor
 
 -- | Convert a `Number` to an `Int`, by taking the closest integer equal to or
 -- | greater than the argument. Values outside the `Int` range are clamped,
 -- | `NaN` and `Infinity` values return 0.
 ceil :: Number -> Int
-ceil = unsafeClamp <<< Math.ceil
+ceil = unsafeClamp <<< Number.ceil
+
+-- | Convert a `Number` to an `Int`, by dropping the decimal.
+-- | Values outside the `Int` range are clamped, `NaN` and `Infinity`
+-- | values return 0.
+trunc :: Number -> Int
+trunc = unsafeClamp <<< Number.trunc
 
 -- | Convert a `Number` to an `Int`, by taking the nearest integer to the
 -- | argument. Values outside the `Int` range are clamped, `NaN` and `Infinity`
 -- | values return 0.
 round :: Number -> Int
-round = unsafeClamp <<< Math.round
+round = unsafeClamp <<< Number.round
 
 -- | Convert an integral `Number` to an `Int`, by clamping to the `Int` range.
 -- | This function will return 0 if the input is `NaN` or an `Infinity`.
