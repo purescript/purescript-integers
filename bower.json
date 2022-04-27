@@ -16,13 +16,13 @@
     "package.json"
   ],
   "dependencies": {
-    "purescript-maybe": "master",
-    "purescript-numbers": "master",
-    "purescript-prelude": "master"
+    "purescript-maybe": "^6.0.0",
+    "purescript-numbers": "^9.0.0",
+    "purescript-prelude": "^6.0.0"
   },
   "devDependencies": {
-    "purescript-assert": "master",
-    "purescript-console": "master",
-    "purescript-partial": "master"
+    "purescript-assert": "^6.0.0",
+    "purescript-console": "^6.0.0",
+    "purescript-partial": "^4.0.0"
   }
 }

@@ -5,6 +5,16 @@ Notable changes to this project are documented in this file. The format is based
 ## [Unreleased]
 
 Breaking changes:
+
+New features:
+
+Bugfixes:
+
+Other improvements:
+
+## [v6.0.0](https://github.com/purescript/purescript-integers/releases/tag/v6.0.0) - 2022-04-27
+
+Breaking changes:
 - Migrate FFI to ES modules (#50 by @kl0tl and @JordanMartinez)
 - Migrate `trunc` from `math` package (#51 by @JordanMartinez)
 
