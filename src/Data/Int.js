@@ -63,3 +63,9 @@ export const pow = function (x) {
     return Math.pow(x,y) | 0;
   };
 };
+
+exports.maxSafeInteger = Number.MAX_SAFE_INTEGER;
+
+exports.minSafeInteger = Number.MIN_SAFE_INTEGER;
+
+exports.isSafeInteger = Number.isSafeInteger;
