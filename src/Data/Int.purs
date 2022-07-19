@@ -1,3 +1,5 @@
+-- | Functions for working with PureScript's builtin `Int` type. A `Int`
+-- | is a signeed 32-bit integer.
 module Data.Int
   ( fromNumber
   , ceil
@@ -30,6 +32,25 @@ import Data.Int.Bits ((.&.))
 import Data.Maybe (Maybe(..), fromMaybe)
 import Data.Number (isFinite)
 import Data.Number as Number
+
+-- | The most negative `Int`, equal to -2^31.
+-- | ```purs
+-- | > minInt
+-- | -2147483648
+-- | ```
+minInt :: Int
+minInt = -0x80000000
+
+-- | The most positive `Int`, equal to 2^31 - 1.
+-- | ```purs
+-- | > maxInt
+-- | 2147483647
+-- |
+-- | > maxInt + 1 == minInt
+-- | true
+-- | ```
+maxInt :: Int
+maxInt = 0x7FFFFFFF
 
 -- | Creates an `Int` from a `Number` value. The number must already be an
 -- | integer and fall within the valid range of values for the `Int` type
