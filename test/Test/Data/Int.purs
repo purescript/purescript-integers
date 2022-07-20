@@ -2,7 +2,7 @@ module Test.Data.Int (testInt) where
 
 import Prelude
 
-import Data.Int (binary, ceil, even, floor, fromNumber, fromString, fromStringAs, hexadecimal, octal, odd, parity, pow, quot, radix, rem, round, toNumber, toStringAs)
+import Data.Int (binary, ceil, even, floor, fromNumber, fromString, fromStringAs, hexadecimal, maxInt, minInt, octal, odd, parity, pow, quot, radix, rem, round, toNumber, toStringAs)
 import Data.Maybe (Maybe(..), fromJust)
 import Effect (Effect)
 import Effect.Console (log)
@@ -12,6 +12,15 @@ import Test.Assert (assert)
 
 testInt :: Effect Unit
 testInt = do
+
+  log "minInt should be -2147483648"
+  assert $ minInt == -2147483648
+
+  log "maxInt should be 2147483647"
+  assert $ maxInt == 2147483647
+
+  log "maxInt + 1 should equal minInt"
+  assert $ maxInt + 1 == minInt
 
   log "fromNumber should coerce integer values"
   assert $ fromNumber 1.0 == Just 1

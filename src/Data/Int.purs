@@ -1,7 +1,9 @@
 -- | Functions for working with PureScript's builtin `Int` type. A `Int`
 -- | is a signeed 32-bit integer.
 module Data.Int
-  ( fromNumber
+  ( minInt
+  , maxInt
+  , fromNumber
   , ceil
   , floor
   , trunc
