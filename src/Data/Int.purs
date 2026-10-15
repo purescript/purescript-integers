@@ -196,8 +196,9 @@ base36 = Radix 36
 
 -- | Create a `Radix` from a number between 2 and 36.
 radix :: Int -> Maybe Radix
-radix n | n >= 2 && n <= 36 = Just (Radix n)
-        | otherwise         = Nothing
+radix n
+  | n >= 2 && n <= 36 = Just (Radix n)
+  | otherwise = Nothing
 
 -- | Like `fromString`, but the integer can be specified in a different base.
 -- |

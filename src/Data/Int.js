@@ -41,10 +41,9 @@ export const toStringAs = function (radix) {
   };
 };
 
-
 export const quot = function (x) {
   return function (y) {
-    return x / y | 0;
+    return (x / y) | 0;
   };
 };
 
@@ -56,6 +55,6 @@ export const rem = function (x) {
 
 export const pow = function (x) {
   return function (y) {
-    return Math.pow(x,y) | 0;
+    return Math.pow(x, y) | 0;
   };
 };
