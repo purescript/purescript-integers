@@ -151,12 +151,11 @@ testInt = do
   log "quotient/remainder law"
   do
     let
-      go a b =
+      go a b = do
         let
           q = quot a b
           r = rem a b
-        in do
-          assert $ q * b + r == a
+        assert $ q * b + r == a
     -- Check when dividend goes into divisor exactly
     go 8 2
     go (-8) 2
