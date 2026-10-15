@@ -1,0 +1,26 @@
+package:
+  name: integers
+  description: Functions and bitwise operators for the Int numeric type
+  build:
+    strict: true
+    pedanticPackages: true
+  publish:
+    version: 6.0.1
+    license: BSD-3-Clause
+    location:
+      githubOwner: purescript
+      githubRepo: purescript-integers
+  dependencies:
+    - maybe: ">=6.0.0 <7.0.0"
+    - numbers: ">=9.0.0 <10.0.0"
+    - prelude: ">=6.0.0 <7.0.0"
+  test:
+    main: Test.Main
+    strict: true
+    pedanticPackages: true
+    dependencies:
+      - assert: ">=6.0.0 <7.0.0"
+      - console: ">=6.0.0 <7.0.0"
+      - effect: ">=4.0.0 <5.0.0"
+      - partial: ">=4.0.0 <5.0.0"
+workspace: {}
