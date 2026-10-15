@@ -6,7 +6,7 @@ Notable changes to this project are documented in this file. The format is based
 
 Other improvements:
 
-- Migrate from Bower/Pulp to Spago and update CI, linting, and formatting
+- Migrate from Bower/Pulp to Spago and update CI, linting, and formatting (#57 by @thomashoneyman)
 
 ## [v6.0.0](https://github.com/purescript/purescript-integers/releases/tag/v6.0.0) - 2022-04-27
 
