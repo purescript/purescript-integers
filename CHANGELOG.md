@@ -2,7 +2,7 @@
 
 Notable changes to this project are documented in this file. The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [Unreleased](https://github.com/purescript/purescript-integers/compare/v6.0.1...HEAD)
 
 Breaking changes:
 
@@ -12,9 +12,16 @@ Bugfixes:
 
 Other improvements:
 
+## [v6.0.1](https://github.com/purescript/purescript-integers/releases/tag/v6.0.1) - 2026-10-17
+
+Other improvements:
+
+- Migrate from Bower/Pulp to Spago and update CI, linting, and formatting (#57 by @thomashoneyman)
+
 ## [v6.0.0](https://github.com/purescript/purescript-integers/releases/tag/v6.0.0) - 2022-04-27
 
 Breaking changes:
+
 - Migrate FFI to ES modules (#50 by @kl0tl and @JordanMartinez)
 - Migrate `trunc` from `math` package (#51 by @JordanMartinez)
 
@@ -23,6 +30,7 @@ New features:
 Bugfixes:
 
 Other improvements:
+
 - Drop dependency on deprecated `math` package (#51 by @JordanMartinez)
 
 ## [v5.0.0](https://github.com/purescript/purescript-integers/releases/tag/v5.0.0) - 2021-02-26
@@ -35,6 +43,7 @@ Breaking changes:
 New features:
 
 Bugfixes:
+
 - Don't rely on inlining of `Ord Number` in `unsafeClamp` (#38)
 
 Other improvements:

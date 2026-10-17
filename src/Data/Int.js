@@ -1,7 +1,6 @@
 export const fromNumberImpl = function (just) {
   return function (nothing) {
     return function (n) {
-      /* jshint bitwise: false */
       return (n | 0) === n ? just(n) : nothing;
     };
   };
@@ -25,7 +24,6 @@ export const fromStringAsImpl = function (just) {
       var pattern = new RegExp("^[\\+\\-]?" + digits + "+$", "i");
 
       return function (s) {
-        /* jshint bitwise: false */
         if (pattern.test(s)) {
           var i = parseInt(s, radix);
           return (i | 0) === i ? just(i) : nothing;
@@ -43,11 +41,9 @@ export const toStringAs = function (radix) {
   };
 };
 
-
 export const quot = function (x) {
   return function (y) {
-    /* jshint bitwise: false */
-    return x / y | 0;
+    return (x / y) | 0;
   };
 };
 
@@ -59,7 +55,6 @@ export const rem = function (x) {
 
 export const pow = function (x) {
   return function (y) {
-    /* jshint bitwise: false */
-    return Math.pow(x,y) | 0;
+    return Math.pow(x, y) | 0;
   };
 };
