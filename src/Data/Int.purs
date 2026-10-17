@@ -115,8 +115,9 @@ derive instance eqParity :: Eq Parity
 derive instance ordParity :: Ord Parity
 
 instance showParity :: Show Parity where
-  show Even = "Even"
-  show Odd = "Odd"
+  show = case _ of
+    Even -> "Even"
+    Odd -> "Odd"
 
 instance boundedParity :: Bounded Parity where
   bottom = Even
@@ -126,8 +127,9 @@ instance semiringParity :: Semiring Parity where
   zero = Even
   add x y = if x == y then Even else Odd
   one = Odd
-  mul Odd Odd = Odd
-  mul _ _ = Even
+  mul x y = case x, y of
+    Odd, Odd -> Odd
+    _, _ -> Even
 
 instance ringParity :: Ring Parity where
   sub = add
@@ -135,8 +137,9 @@ instance ringParity :: Ring Parity where
 instance commutativeRingParity :: CommutativeRing Parity
 
 instance euclideanRingParity :: EuclideanRing Parity where
-  degree Even = 0
-  degree Odd = 1
+  degree = case _ of
+    Even -> 0
+    Odd -> 1
   div x _ = x
   mod _ _ = Even
 
