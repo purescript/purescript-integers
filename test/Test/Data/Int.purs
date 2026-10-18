@@ -4,9 +4,9 @@ import Prelude
 
 import Data.Int (binary, ceil, even, floor, fromNumber, fromString, fromStringAs, hexadecimal, octal, odd, parity, pow, quot, radix, rem, round, toNumber, toStringAs)
 import Data.Maybe (Maybe(..), fromJust)
+import Data.Number (infinity, nan)
 import Effect (Effect)
 import Effect.Console (log)
-import Data.Number (nan, infinity)
 import Partial.Unsafe (unsafePartial)
 import Test.Assert (assert)
 
@@ -40,23 +40,24 @@ testInt = do
   assert $ floor 0.7 == 0
 
   log "round, ceil, and floor should clamp values outside the Int range"
-  let testClamping f = do
-        let low = toNumber bottom - 1.5
-        assert $ f low == bottom
+  let
+    testClamping f = do
+      let low = toNumber bottom - 1.5
+      assert $ f low == bottom
 
-        let high = toNumber top + 1.5
-        assert $ f high == top
+      let high = toNumber top + 1.5
+      assert $ f high == top
 
   testClamping round
   testClamping ceil
   testClamping floor
 
-
   log "round, ceil, and floor should return 0 for NaN and Infinities"
-  let testNonNumber f = do
-        assert $ f nan == 0
-        assert $ f infinity == 0
-        assert $ f (-infinity) == 0
+  let
+    testNonNumber f = do
+      assert $ f nan == 0
+      assert $ f infinity == 0
+      assert $ f (-infinity) == 0
 
   testNonNumber round
   testNonNumber ceil
@@ -135,9 +136,10 @@ testInt = do
 
   log "parity is a ring homomorphism"
   do
-    let go x y = do
-          assert $ parity x + parity y == parity (x + y)
-          assert $ parity x * parity y == parity (x * y)
+    let
+      go x y = do
+        assert $ parity x + parity y == parity (x + y)
+        assert $ parity x * parity y == parity (x * y)
 
     go 0 0
     go 0 1
@@ -151,12 +153,11 @@ testInt = do
   log "quotient/remainder law"
   do
     let
-      go a b =
+      go a b = do
         let
           q = quot a b
           r = rem a b
-        in do
-          assert $ q * b + r == a
+        assert $ q * b + r == a
     -- Check when dividend goes into divisor exactly
     go 8 2
     go (-8) 2

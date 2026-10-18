@@ -1,8 +1,11 @@
 -- | This module defines bitwise operations for the `Int` type.
 module Data.Int.Bits
-  ( and, (.&.)
-  , or, (.|.)
-  , xor, (.^.)
+  ( and
+  , (.&.)
+  , or
+  , (.|.)
+  , xor
+  , (.^.)
   , shl
   , shr
   , zshr
