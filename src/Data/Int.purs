@@ -228,6 +228,8 @@ fromStringAs = fromStringAsImpl Just Nothing
 -- | div 2 (-3) == 0
 -- | quot 2 (-3) == 0
 -- | ```
+-- |
+-- | Returns zero when the divisor is zero.
 foreign import quot :: Int -> Int -> Int
 
 -- | The `rem` function provides the remainder after _truncating_ integer
@@ -246,6 +248,9 @@ foreign import quot :: Int -> Int -> Int
 -- | mod 2 (-3) == 2
 -- | rem 2 (-3) == 2
 -- | ```
+-- |
+-- | Returns zero when the divisor is zero, consistent with `quot` and `mod`.
+-- | The quotient/remainder law only applies to nonzero divisors.
 foreign import rem :: Int -> Int -> Int
 
 -- | Raise an Int to the power of another Int.
