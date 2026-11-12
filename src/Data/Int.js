@@ -49,7 +49,7 @@ export const quot = function (x) {
 
 export const rem = function (x) {
   return function (y) {
-    return x % y;
+    return (x % y) | 0;
   };
 };
 

@@ -3,12 +3,17 @@ module Test.Data.Int (testInt) where
 import Prelude
 
 import Data.Int (binary, ceil, even, floor, fromNumber, fromString, fromStringAs, hexadecimal, octal, odd, parity, pow, quot, radix, rem, round, toNumber, toStringAs)
+import Data.Int.Bits (zshr)
 import Data.Maybe (Maybe(..), fromJust)
 import Data.Number (infinity, nan)
 import Effect (Effect)
 import Effect.Console (log)
 import Partial.Unsafe (unsafePartial)
 import Test.Assert (assert)
+
+-- Keep calls opaque to the compiler's bitwise-operation inliner so these
+-- assertions exercise the library's FFI implementation.
+foreign import applyIntBinary :: (Int -> Int -> Int) -> Int -> Int -> Int
 
 testInt :: Effect Unit
 testInt = do
@@ -169,6 +174,43 @@ testInt = do
     go (-2) 3
     go 2 (-3)
     go (-2) (-3)
+
+  log "quot and rem return zero for a zero divisor"
+  let
+    testZeroDivisor x = do
+      assert $ quot x 0 == 0
+      assert $ rem x 0 == 0
+      assert $ applyIntBinary rem x 0 == 0
+  testZeroDivisor 0
+  testZeroDivisor 5
+  testZeroDivisor (-5)
+  testZeroDivisor bottom
+  testZeroDivisor top
+
+  log "rem preserves the dividend's sign"
+  assert $ applyIntBinary rem (-8) 3 == (-2)
+  assert $ applyIntBinary rem 8 (-3) == 2
+  assert $ applyIntBinary rem (-8) (-3) == (-2)
+
+  log "zshr FFI returns signed Ints and masks shift counts to five bits"
+  let
+    testShiftCount count = do
+      assert $ applyIntBinary zshr (-1) count == (-1)
+      assert $ applyIntBinary zshr (-8) count == (-8)
+      assert $ applyIntBinary zshr bottom count == bottom
+      assert $ applyIntBinary zshr top count == top
+  testShiftCount 0
+  testShiftCount 32
+  testShiftCount 64
+  testShiftCount (-32)
+
+  log "zshr zero-fills rather than sign-extends negative inputs"
+  assert $ zshr (-8) 1 == 2147483644
+  assert $ zshr bottom 31 == 1
+  assert $ zshr (-8) 33 == 2147483644
+  assert $ applyIntBinary zshr (-8) 1 == 2147483644
+  assert $ applyIntBinary zshr bottom 31 == 1
+  assert $ applyIntBinary zshr (-8) 33 == 2147483644
 
   log "pow"
   assert $ pow 2 2 == 4

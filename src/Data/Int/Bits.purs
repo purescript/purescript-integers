@@ -34,6 +34,8 @@ foreign import shl :: Int -> Int -> Int
 foreign import shr :: Int -> Int -> Int
 
 -- | Bitwise zero-fill shift right.
+-- | Only the low five bits of the shift count are used. The result is a signed
+-- | 32-bit `Int`, so shifting by zero (or a multiple of 32) returns the input.
 foreign import zshr :: Int -> Int -> Int
 
 -- | Bitwise NOT.
