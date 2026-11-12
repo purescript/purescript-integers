@@ -264,3 +264,9 @@ foreign import fromStringAsImpl
   -> Maybe Int
 
 foreign import toStringAs :: Radix -> Int -> String
+
+foreign import maxSafeInteger :: Number
+
+foreign import minSafeInteger :: Number
+
+foreign import isSafeInteger :: Number -> Boolean
