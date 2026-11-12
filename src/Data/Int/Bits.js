@@ -39,3 +39,36 @@ export const zshr = function (n1) {
 export const complement = function (n) {
   return ~n;
 };
+
+export const zeroBits = 0;
+
+export const bit = function (n) {
+  return function (pos) {
+    return (1 << pos);
+  }
+};
+
+export const setBit = function (n) {
+  return function (pos) {
+    return n | (1 << pos);
+  }
+};
+
+export const clearBit = function (n) {
+  return function (pos) {
+    const mask = ~(1 << pos);
+    return n & mask;
+  }
+};
+
+export const complementBit = function (n) {
+  return function (pos) {
+    return n ^ (1 << pos);
+  }
+};
+
+export const testBit = function (n) {
+  return function (pos) {
+    return (n & (1 << pos)) === 0 ? 0 : 1;
+  }
+};
