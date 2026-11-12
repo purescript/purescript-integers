@@ -2,7 +2,7 @@
 
 Notable changes to this project are documented in this file. The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased](https://github.com/purescript/purescript-integers/compare/v6.0.1...HEAD)
+## [Unreleased](https://github.com/purescript/purescript-integers/compare/v6.0.2...HEAD)
 
 Breaking changes:
 
@@ -10,10 +10,14 @@ New features:
 
 Bugfixes:
 
+Other improvements:
+
+## [v6.0.2](https://github.com/purescript/purescript-integers/releases/tag/v6.0.2) - 2026-11-11
+
+Bugfixes:
+
 - Return zero instead of `NaN` from `Data.Int.rem` when the divisor is zero (#60 by @thomashoneyman).
 - Keep the FFI result of `Data.Int.Bits.zshr` within the signed 32-bit `Int` range (#60 by @thomashoneyman). Shifting a negative input by zero or a multiple of 32 now returns that input instead of converting it to an unsigned number.
-
-Other improvements:
 
 ## [v6.0.1](https://github.com/purescript/purescript-integers/releases/tag/v6.0.1) - 2026-10-17
 
